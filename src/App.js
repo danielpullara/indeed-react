@@ -7,39 +7,29 @@ import {
 } from "react-router-dom"
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router} from "react-router-dom";
+// import { BrowserRouter as Router } from "react-router-dom";
 import HomePage from "./pages/Homepage";
-import CandidatesPage from "./component/CandidatesPage";
-import CandidatesForm from "./component/CandidatesForm";
 import CompanyPage from './pages/CompanyPage';
-import { InputGroup, Row, Col, Form, Button, Container } from "react-bootstrap";
-
+import AllCandidates from "./pages/AllCandidates"
+// /candidates to show all candidates
+// /candidates/:id to show single candidate
+// that makes sense so something like: is that Ok? kind of, but need fixing alot of things here
+// let's start with simple thing first
+// the naming here confuse me
 function App() {
-    return (
-      <div > 
-      
-       <h1>CandidatePage</h1>
+  return (
+    <div >
+      <h1>CandidatePage</h1>
+
       <div>
         <p><Link to="/guest" >Page Guest</Link></p>
         <p><Link to="/user" >User Guest</Link></p>
       </div>
-      <Router>
-        <Route path="/" exact component={HomePage} />
-      </Router>
-      <Router>
-      <Route path="/candidates/:id" component={CandidatesPage} />
-      <Container style={"unspecified"}>
-        <Row>
-          <Col>
-            <CandidatesForm candidate={candidate} />
-          </Col>
-        </Row>
-      </Container>
-      </Router>
-      <Router>
-        <Route path="/Company" component={CompanyPage} />
-      </Router>
       <Switch>
+        <Route path="/" exact component={HomePage} />
+        <Route path="/candidates" exact component={AllCandidates} />
+        {/* <Route path="/candidates/:id" component={CandidatesPage} /> */}
+        <Route path="/Company" component={CompanyPage} />
         <Route path="/guest" render={(props) => <Guest {...props} name={"Khoa"} />} />
         <ProtectedRoute path="/user" render={(props) => <User authenticated={false} {...props} />} />
       </Switch>

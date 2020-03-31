@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { InputGroup, Row, Col, Form, Button, Container } from "react-bootstrap";
 
-
-export default function CandidateForm(props) {
+export default function CandidatesForm(props) {
   const [validated, setValidated] = useState(false);
   const [candidate, setCandidate] = useState({
     city: "",
@@ -67,7 +67,7 @@ export default function CandidateForm(props) {
     <Container style={"unspecified"}>
       <Row>
         <Col>
-        <CandidateForm candidate={candidate} />
+          <CandidatesForm candidate={candidate} />
           <img src={candidate.photo_url} alt={candidate.first_name} />
           <Form noValidate validated={validated} onSubmit={onSubmit}>
             <Form.Row>
