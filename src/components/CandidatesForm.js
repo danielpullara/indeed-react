@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+
 import { InputGroup, Row, Col, Form, Button, Container } from "react-bootstrap";
 
-export default function CandidatesForm(props) {
+export default function CandidateForm(props) {
   const [validated, setValidated] = useState(false);
   const [candidate, setCandidate] = useState({
     city: "",
@@ -27,12 +28,9 @@ export default function CandidatesForm(props) {
   };
 
   useEffect(() => {
-    if (props.candidate) {
-      setCandidate(props.candidate);
-    } else {
-      getCandidate();
-    }
-  }, [props.candidate]);
+    getCandidate()
+  }, []);
+    
 
   const updateCandidate = async () => {
     const config = {
@@ -64,10 +62,9 @@ export default function CandidatesForm(props) {
   };
 
   return (
-    <Container style={"unspecified"}>
+    <Container>
       <Row>
         <Col>
-          <CandidatesForm candidate={candidate} />
           <img src={candidate.photo_url} alt={candidate.first_name} />
           <Form noValidate validated={validated} onSubmit={onSubmit}>
             <Form.Row>

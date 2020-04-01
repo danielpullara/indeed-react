@@ -22,9 +22,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 
-
-
-
 export default function AllCandidates(props) {
     // now fetching all candidates
     const [candidates, setCandidates] = useState([]);
@@ -41,9 +38,15 @@ export default function AllCandidates(props) {
     }, []);
 
     // define Delete function
-    const onDeleteCandidate = id => {
-        // do something later
-    }
+    const onDeleteCandidate = async (id) => {
+        const response = await fetch(`http://localhost:3001/candidates/${id}`);
+        const data = await response.json();
+        const newCandidates = candidates.filter(candidate => candidate.id !== id);
+        setCandidates(newCandidates);
+    };
+    useEffect(() => {
+        onDeleteCandidate()
+    }, []);
 
 
 
@@ -103,9 +106,6 @@ export default function AllCandidates(props) {
         <div>
             <h1>List of candidates here</h1>
             {renderCandidates()}
-
-
-
 
 
         </div>
