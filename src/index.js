@@ -3,12 +3,32 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {BrowserRouter} from 'react-router-dom';
+import { BrowserRouter as Router} from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux'
+
+let initialState = {
+  user: { email: '', password: '', authenticate: false }
+}
+
+function indeedReducer(state = initialState, action) {
+  if(action.type === 'LOGIN'){
+    state.user = action.payload
+    state.user.authenticatice=true;
+    console.log("login succesfully", state.user)
+  }
+  return state
+}
+
+const store = createStore(indeedReducer);
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>
+  ,
   document.getElementById('root')
 );
 
